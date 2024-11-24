@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>新規カード登録画面</title>
+	</head>
+	<body>
+		<h1>新規カード登録</h1>
+		<form method="post" th:action="@{/newCardRegistration/register}" >
+			<input type="text" name="cardName" />
+			<input type="text" name="cardAbbreviation" />
+			<dev>
+				<input type="radio" id="deuelMaster" name="cardTitle" value="01"/>
+				<label for="deuelMaster">デュエマ</label>
+				<input type="radio" id="pokemonCard" name="cardTitle" value="02"/>
+				<label for="pokemonCard">ポケカ</label>
+			</dev>
+			<input type="submit" value="登録" />
+		</form>
+	</body>
+</html>

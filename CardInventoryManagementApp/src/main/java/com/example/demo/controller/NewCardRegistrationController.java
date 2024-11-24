@@ -1,26 +1,26 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.AddNewCardInfoForm;
 import com.example.demo.service.NewCardRegistrationService;
 
-import lombok.RequiredArgsConstructor;
-
 @RequestMapping("newCardRegistration")
 @Controller
-@RequiredArgsConstructor
 public class NewCardRegistrationController {
 
+	@Autowired
 	/** 新規カード登録処理を行うサービス */
 	private NewCardRegistrationService service;
 	
 	/**
-	 * 新規カード登録画面を表示する
+	 * 新規カード登録画面を表示するS
 	 * 
 	 * @return 新規カード登録画面のパス
 	 */
@@ -36,7 +36,9 @@ public class NewCardRegistrationController {
 	 * @param model モデル
 	 * @return 新規カード登録画面へのリダイレクトパス
 	 */
+	@PostMapping("/register")
 	public String add(@ModelAttribute AddNewCardInfoForm form, Model model) {
+		service.registCardInfo(form);
 		return "redirect:/index";
 	}
 }

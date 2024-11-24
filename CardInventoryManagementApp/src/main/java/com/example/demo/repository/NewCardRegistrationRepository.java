@@ -1,16 +1,17 @@
 package com.example.demo.repository;
 
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.AddNewCardInfoForm;
-
-public interface NewCardRegistrationRepository extends CrudRepository<AddNewCardInfoForm, Integer>{
-	@Modifying
-	@Query(value = "INSERT INTO card_info VALUES(0,:name, :abbreviation, :title)")
-	void insertNewCardInfo(@Param("name") String name,
-	                       @Param("abbreviation") String abbreviation,
-	                       @Param("title") String title);
+@Repository
+public class NewCardRegistrationRepository{
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	public void insertNewCardInfo(String name, String abbreviation, String title) {
+		String query = "INSERT INTO card_info (name, abbreviation, title) VALUES(?, ?, ?)";
+		jdbcTemplate.update(query, name, abbreviation, title);
+	}
 }

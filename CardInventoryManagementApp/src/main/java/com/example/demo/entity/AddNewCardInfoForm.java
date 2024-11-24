@@ -1,11 +1,9 @@
 package com.example.demo.entity;
 
-import java.io.Serializable;
-
 import lombok.Data;
 
 @Data
-public class AddNewCardInfoForm implements Serializable{
+public class AddNewCardInfoForm{
 	/** カード名 */
 	private String cardName;
 	/** カード略称 */
