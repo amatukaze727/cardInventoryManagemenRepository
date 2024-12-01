@@ -11,7 +11,7 @@ public class NewCardRegistrationRepository{
 	private JdbcTemplate jdbcTemplate;
 	
 	public void insertNewCardInfo(String name, String abbreviation, String title) {
-		String query = "INSERT INTO card_info (name, abbreviation, title) VALUES(?, ?, ?)";
+		String query = "INSERT INTO card_info (card_name, card_abbreviation, card_title) VALUES(?, ?, ?)";
 		jdbcTemplate.update(query, name, abbreviation, title);
 	}
 }

@@ -6,11 +6,14 @@
 	</head>
 	<body>
 		<h1>新規カード登録</h1>
+		<label th:text="${message}" style="color:red;"></label>
 		<form method="post" th:action="@{/newCardRegistration/register}" >
+			<label>カード名:</label>
 			<input type="text" name="cardName" />
+			<label>カード略式名称:</label>
 			<input type="text" name="cardAbbreviation" />
 			<dev>
-				<input type="radio" id="deuelMaster" name="cardTitle" value="01"/>
+				<input type="radio" id="deuelMaste r" name="cardTitle" value="01"/>
 				<label for="deuelMaster">デュエマ</label>
 				<input type="radio" id="pokemonCard" name="cardTitle" value="02"/>
 				<label for="pokemonCard">ポケカ</label>

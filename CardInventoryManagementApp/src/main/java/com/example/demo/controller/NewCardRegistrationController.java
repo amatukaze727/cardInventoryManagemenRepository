@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.AddNewCardInfoForm;
 import com.example.demo.service.NewCardRegistrationService;
@@ -37,8 +38,9 @@ public class NewCardRegistrationController {
 	 * @return 新規カード登録画面へのリダイレクトパス
 	 */
 	@PostMapping("/register")
-	public String add(@ModelAttribute AddNewCardInfoForm form, Model model) {
+	public String add(@ModelAttribute AddNewCardInfoForm form, Model model, RedirectAttributes redirectAttributes) {
 		service.registCardInfo(form);
-		return "redirect:/index";
+		redirectAttributes.addFlashAttribute("message", "カードを登録しました。");
+		return "redirect:index";
 	}
 }
