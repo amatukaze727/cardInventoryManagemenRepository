@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class SearchCardForm {
-	/** カード名 */
-	private String cardName;
+	/** カード略称 */
+	private String cardAbbreviation;
 }
