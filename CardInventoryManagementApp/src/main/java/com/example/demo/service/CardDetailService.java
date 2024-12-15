@@ -7,20 +7,22 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.SearchCardForm;
+import com.example.demo.entity.SearchCardDetailForm;
+import com.example.demo.entity.SearchCardDetailResult;
 import com.example.demo.entity.SearchCardResult;
-import com.example.demo.repository.CardSearchRepository;
+import com.example.demo.repository.CardDetailRepository;
 
 @Service
-public class CardSearchService {
+public class CardDetailService {
 	@Autowired
-	private CardSearchRepository repository;
+	private CardDetailRepository repository;
 	
-	public List<SearchCardResult> searchCard(SearchCardForm form) {
-		// カード略称を元にカード情報を検索する
-		List<Map<String, Object>> resultList = repository.selectCardInfo(form.getCardAbbreviation());
+	public List<SearchCardDetailResult> searchCardDetail(SearchCardDetailForm form) {
+		// カード詳細情報
+		List<Map<String, Object>> resultList = repository.selectCardDetail(form.getCardId());
 		// SearchCardResultに受け取った情報をセットする
-		List<SearchCardResult> searchCardResultList = new ArrayList<SearchCardResult>();
+		// しゅうせい
+		List<SearchCardDetailResult> searchCardResultList = new ArrayList<SearchCardDetailResult>();
 		for(Map<String, Object> result:resultList){
 			SearchCardResult searchCardResult = new SearchCardResult();
 			searchCardResult.setCardId(result.get("card_id").toString());

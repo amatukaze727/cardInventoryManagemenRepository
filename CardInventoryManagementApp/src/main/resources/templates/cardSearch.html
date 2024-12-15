@@ -5,6 +5,19 @@
 		<title>カード検索画面</title>
 	</head>
 	<body>
-
+		<h1>カード検索</h1>
+		<form method="get" th:action="@{/cardSearch/search}" >
+			<label>カード略式名称:</label>
+			<input type="text" name="cardAbbreviation" />
+			<input type="submit" value="検索" />
+		</form>
+		<h3>検索結果</h3>
+		<form method="get" th:action="@{/cardDetail/search}" th:each="searchCardResult : ${searchCardResultList}" >
+			<input type="hidden" name="cardId" th:value="${searchCardResult.cardId}" />
+			<input type="text" name="cardName" th:value="${searchCardResult.cardName}" />
+			<input type="text" name="cardCount"th:value="${searchCardResult.cardCount}" />
+			<input type="submit" value="詳細" />
+		</form>
+		<a href="/card-inventory-management/newCardRegistration/index">カード新規登録画面へ</a>
 	</body>
 </html>
