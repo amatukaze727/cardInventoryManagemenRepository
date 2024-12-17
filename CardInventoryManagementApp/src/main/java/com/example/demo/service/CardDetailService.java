@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.SearchCardDetailForm;
 import com.example.demo.entity.SearchCardDetailResult;
-import com.example.demo.entity.SearchCardResult;
 import com.example.demo.repository.CardDetailRepository;
 
 @Service
@@ -20,17 +19,17 @@ public class CardDetailService {
 	public List<SearchCardDetailResult> searchCardDetail(SearchCardDetailForm form) {
 		// カード詳細情報
 		List<Map<String, Object>> resultList = repository.selectCardDetail(form.getCardId());
-		// SearchCardResultに受け取った情報をセットする
-		// しゅうせい
-		List<SearchCardDetailResult> searchCardResultList = new ArrayList<SearchCardDetailResult>();
+		// SearchCardDetailResultに受け取った情報をセットする
+		List<SearchCardDetailResult> searchCardDetailResultList = new ArrayList<SearchCardDetailResult>();
 		for(Map<String, Object> result:resultList){
-			SearchCardResult searchCardResult = new SearchCardResult();
-			searchCardResult.setCardId(result.get("card_id").toString());
-			searchCardResult.setCardName(result.get("card_name").toString());
-			// カードIDを元にカード枚数を検索する
-			searchCardResult.setCardCount(repository.selectCardCount(searchCardResult.getCardId()));
-			searchCardResultList.add(searchCardResult);
+			SearchCardDetailResult searchCardDetailResult = new SearchCardDetailResult();
+			searchCardDetailResult.setCardName(form.getCardName());
+			searchCardDetailResult.setCardId(result.get("card_id").toString());
+			searchCardDetailResult.setCardDetailId(result.get("card_detail_id").toString());
+			searchCardDetailResult.setCardLocation(result.get("card_location").toString());
+			searchCardDetailResult.setCardStatus(result.get("card_status").toString());
+			searchCardDetailResultList.add(searchCardDetailResult);
 		}
-		return searchCardResultList;
+		return searchCardDetailResultList;
 	}
 }
