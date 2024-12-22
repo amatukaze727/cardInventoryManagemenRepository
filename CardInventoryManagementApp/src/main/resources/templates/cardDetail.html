@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>カード詳細画面</title>
+	</head>
+	<body>
+		<h1>カード詳細</h1>
+		<form method="post" th:action="@{/cardDetail/delete}" th:each="cardDetail : ${cardDetailList}" >
+			<input type="hidden" name="cardDetailId" th:value="${cardDetail.cardDetailId}" />
+			<input type="text" name="cardName" th:value="${cardDetail.cardName}" />
+			<input type="text" name="cardLocation" th:value="${cardDetail.cardLocation}" />
+			<input type="text" name="cardCount"th:value="${cardDetail.cardStatus}" />
+			<input type="submit" value="削除" />
+		</form>
+		<form method="get" th:action="@{/cardAdd/index}" >
+			<input type="hidden" name="cardId" th:value="${cardDetailList.get(1).cardId" />
+			<input type="submit" value="カード在庫追加" />
+		</form>
+		<a href="/card-inventory-management/cardSearch/index }">カード検索画面に戻る</a>
+	</body>
 </html>

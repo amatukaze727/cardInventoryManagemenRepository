@@ -24,4 +24,16 @@ public class CardDetailRepository {
 		List<Map<String, Object>> list = jdbcTemplate.queryForList(query, cardId);
 		return list;
 	}
+	
+	/**
+	 * カード詳細情報検索処理
+	 * 
+	 * @param cardId カードID
+	 * @param cardLocation カード配置場所
+	 * @param cardStatus カード状態
+	 */
+	public void insertCardDetailInfo(String cardId, String cardLocation, String cardStatus) {
+		String query = "INSERT INTO card_detail_info (card_id, card_location, card_status, date_added, date_updated) VALUES(?, ?, ?, CURRENT_TIME, CURRENT_TIME)";
+		jdbcTemplate.update(query, cardId, cardLocation, cardStatus);
+	}
 }

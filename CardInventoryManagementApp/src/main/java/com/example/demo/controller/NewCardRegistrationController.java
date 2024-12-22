@@ -21,7 +21,7 @@ public class NewCardRegistrationController {
 	private NewCardRegistrationService service;
 	
 	/**
-	 * 新規カード登録画面を表示するS
+	 * 新規カード登録画面を表示する
 	 * 
 	 * @return 新規カード登録画面のパス
 	 */

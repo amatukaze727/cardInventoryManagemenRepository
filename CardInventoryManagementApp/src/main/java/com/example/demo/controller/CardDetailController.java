@@ -26,4 +26,5 @@ public class CardDetailController {
 		model.addAttribute("cardDetailList",searchCardDetailResultList);
 		return "cardDetail";
 	}
+	// 削除機能は後で追加
 }
