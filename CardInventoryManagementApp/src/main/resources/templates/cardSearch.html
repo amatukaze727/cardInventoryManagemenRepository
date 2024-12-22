@@ -17,7 +17,9 @@
 			<input type="text" name="cardName" th:value="${searchCardResult.cardName}" />
 			<input type="text" name="cardCount"th:value="${searchCardResult.cardCount}" />
 			<input type="submit" th:formaction="@{/cardDetail/search}" value="詳細" />
-			<input type="submit" th:formaction="@{/cardAdd/index}" value="在庫追加" />
+			<button th:onclick="|location.href='/card-inventory-management/cardStockAdd/index?param=__${searchCardResult.cardId}__'|" >
+				カード在庫追加
+			</button>
 		</form>
 		<a href="/card-inventory-management/newCardRegistration/index">カード新規登録画面へ</a>
 	</body>
