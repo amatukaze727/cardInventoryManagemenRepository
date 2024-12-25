@@ -26,7 +26,7 @@ public class CardDetailRepository {
 	}
 	
 	/**
-	 * カード詳細情報検索処理
+	 * カード詳細情報登録処理
 	 * 
 	 * @param cardId カードID
 	 * @param cardLocation カード配置場所
@@ -35,5 +35,16 @@ public class CardDetailRepository {
 	public void insertCardDetailInfo(String cardId, String cardLocation, String cardStatus) {
 		String query = "INSERT INTO card_detail_info (card_id, card_location, card_status, date_added, date_updated) VALUES(?, ?, ?, CURRENT_TIME, CURRENT_TIME)";
 		jdbcTemplate.update(query, cardId, cardLocation, cardStatus);
+	}
+	
+	/**
+	 * カード名検索処理
+	 * 
+	 * @param cardId カードID
+	 * @return cardName カード名
+	 */
+	public String selectCardName(String cardId) {
+		String query= "SELECT card_name FROM card_info WHERE card_id = ?";
+		return jdbcTemplate.queryForObject(query, String.class, cardId);
 	}
 }

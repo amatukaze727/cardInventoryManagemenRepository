@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.entity.SearchCardDetailForm;
 import com.example.demo.entity.SearchCardDetailResult;
 import com.example.demo.service.CardDetailService;
 
@@ -21,8 +20,8 @@ public class CardDetailController {
 	private CardDetailService service;
 	
 	@GetMapping("/search")
-	public String search(@ModelAttribute SearchCardDetailForm form, Model model) {
-		List<SearchCardDetailResult> searchCardDetailResultList = service.searchCardDetail(form);
+	public String search(@RequestParam("cardId")String cardId, Model model) {
+		List<SearchCardDetailResult> searchCardDetailResultList = service.searchCardDetail(cardId);
 		model.addAttribute("cardDetailList",searchCardDetailResultList);
 		return "cardDetail";
 	}
